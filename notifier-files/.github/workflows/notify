@@ -1,0 +1,100 @@
+name: Gut Rebuild Notifications
+on:
+  schedule:
+    - cron: '30 5 * * *'
+    - cron: '0 6 * * *'
+    - cron: '0 9 * * *'
+    - cron: '30 11 * * *'
+    - cron: '30 14 * * *'
+    - cron: '30 17 * * *'
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send 6:30 NALACNO
+        if: github.event.schedule == '30 5 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=NALACNO -- 6:30" \
+            -F "message=L-Glutamin 5g do vody
+          Probiotika 1 kapsle
+          Vlazna voda s citronem 300ml" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 7:00 SNIDANE
+        if: github.event.schedule == '0 6 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=SNIDANE -- 7:00" \
+            -F "message=Vitamin D3+K2 + B-komplex + Omega-3
+          Priprav si snidani
+          Zacni pit vodu - cil 500ml do 9:00" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 10:00 SVACINA
+        if: github.event.schedule == '0 9 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=DOPOLEDNI SVACINA -- 10:00" \
+            -F "message=Matcha z termosky
+          Kreatin 5g do vody
+          Sezrat svacinu
+          Voda 500ml do 12:00" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 12:30 OBED
+        if: github.event.schedule == '30 11 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=OBED -- 12:30" \
+            -F "message=Omega-3 1g + Travici enzymy
+          Obed z jidelnicku
+          Voda + hermankovy caj 750ml do 15:00" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 15:30 SHAKE
+        if: github.event.schedule == '30 14 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=SHAKE + SVACINA -- 15:30" \
+            -F "message=DIY gainer: whey 30g + palatinose 50g + banan
+          L-Glutamin 5g v shakeru
+          Nebo svacina z jidelnicku" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 18:30 VECERE
+        if: github.event.schedule == '30 17 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=VECERE -- 18:30" \
+            -F "message=Kombucha 150ml + Zinek 25mg
+          Vecere z jidelnicku
+          Zazvorovy caj 250ml" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
+
+      - name: Send 21:00 PRED SPANIM
+        if: github.event.schedule == '0 20 * * *'
+        run: |
+          curl -s -F "token=a9wxwbgdo7qxte9rz2f8wp5jkdcgew" \
+            -F "user=uzw2pfxcjohf159w8jir29u4a5f3s5" \
+            -F "title=PRED SPANIM -- 21:00" \
+            -F "message=Shake #2: whey 30g + palatinose 40g + mleko
+          Horcik 400mg + Kolagen 10g
+          Posledni voda 300ml" \
+            -F "priority=1" -F "sound=persistent" -F "retry=60" -F "expire=600" \
+            https://api.pushover.net/1/messages.json
